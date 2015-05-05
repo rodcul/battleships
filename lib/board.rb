@@ -54,5 +54,9 @@ def lookup location
   places[x][y]
 end
 
-
+def print
+  places.each do |r|
+  puts r.map { |p| p }.join(" ")
+end
+end
 end
