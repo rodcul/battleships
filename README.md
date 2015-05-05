@@ -5,6 +5,37 @@ Create a battleships game in Ruby!
 
 https://github.com/makersacademy/course/blob/master/battle_ships/battle_ships.md
 
+Class Responsibility Collaborator
+---------------------------------
+
+* Board
+** Responsibilities
+*** Board size
+*** Place ships (location/direction)
+*** Return hit/miss ship
+*** Return summary hits/misses so far
+*** Return won/lost game
+
+** Collaborations
+*** Ship
+
+* Ship << Destroyer
+** Responsibilities
+*** Ship size
+
+** Collaborations
+*** Board
+
+* Destroyer
+** Responsibilities
+*** Ship size
+
+** Collaborations
+*** Ship
+
+
+
+
 ```
 As a player
 So that I can prepare for the game
