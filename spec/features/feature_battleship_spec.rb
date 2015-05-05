@@ -11,9 +11,12 @@ feature Board do
     scenario 'allows placing ship in a location' do
 
       board = Board.new
-      board.place_ship 'a3'
-      expect(board.lookup('a3')).to eq 'ship'
+      board.place_ship('a3',:destroyer)
+      expect(board.lookup('a3')).to eq 's'
+      expect(board.lookup('a4')).to eq 's'
 
     end
+
+
 
 end
