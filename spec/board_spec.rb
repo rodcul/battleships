@@ -3,7 +3,7 @@ require 'board'
 describe Board do
   it 'should be created with default size of 10' do
     board = Board.new
-    expect(board.places.count).to eq 10
+    expect(board.grid.count).to eq 10
   end
 
 
