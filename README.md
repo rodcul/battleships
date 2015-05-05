@@ -43,4 +43,4 @@ So that I can play against a human opponent
 I would like to play a two-player game
 ```
 
-[Battleships]: http://upload.wikimedia.org/wikipedia/commons/e/e4/Battleships_Paper_Game.svg
+[Battleships]: (http://upload.wikimedia.org/wikipedia/commons/e/e4/Battleships_Paper_Game.svg "Battleships")
