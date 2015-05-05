@@ -16,15 +16,35 @@ def mapper(location)
 
 end
 
-def place_ship(location,input_ship)
+def place_ship(location,input_ship,direction)
   ship = Ship.new
   size = ship.ships[input_ship]
   x,y = mapper location
 
-  i = 0
-  while i < size
-    places[x][y+i] = 's'
-    i += 1
+  if direction == :right
+    i = 0
+    while i < size
+      places[x][y+i] = 's'
+      i += 1
+    end
+  elsif direction == :down
+    i = 0
+    while i < size
+      places[x+i][y] = 's'
+      i += 1
+    end
+  elsif direction == :left
+    i = 0
+    while i < size
+      places[x][y-i] = 's'
+      i += 1
+    end
+  else direction == :up
+    i = 0
+    while i < size
+      places[x-i][y] = 's'
+      i += 1
+    end
   end
 
 end
