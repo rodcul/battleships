@@ -9,29 +9,29 @@ Class Responsibility Collaborator
 ---------------------------------
 
 * Board
-** Responsibilities
-*** Board size
-*** Place ships (location/direction)
-*** Return hit/miss ship
-*** Return summary hits/misses so far
-*** Return won/lost game
+  * Responsibilities
+    * Board size
+    * Place ships (location/direction)
+    * Return hit/miss ship
+    * Return summary hits/misses so far
+    * Return won/lost game
 
-** Collaborations
-*** Ship
+  * Collaborations
+    * Ship
 
 * Ship << Destroyer
-** Responsibilities
-*** Ship size
+  * Responsibilities
+    * Ship size
 
-** Collaborations
-*** Board
+  * Collaborations
+    * Board
 
 * Destroyer
-** Responsibilities
-*** Ship size
+  * Responsibilities
+    * Ship size
 
-** Collaborations
-*** Ship
+  * Collaborations
+   * Ship
 
 
 
