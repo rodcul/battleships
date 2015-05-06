@@ -29,7 +29,9 @@ M · · · S
 · · · · S
 
 #<Ship:0x007feb73887050 @type=:cruiser, @size=3, @hits=3, @sunk=true>
-#<Ship:0x007feb738869c0 @type=:battleship, @size=4, @hits=0, @sunk=false>```
+#<Ship:0x007feb738869c0 @type=:battleship, @size=4, @hits=0, @sunk=false>
+```
+
 
 Class Responsibility Collaborator
 ---------------------------------
