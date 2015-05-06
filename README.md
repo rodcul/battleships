@@ -11,7 +11,7 @@ Class Responsibility Collaborator
 * Board
   * Responsibilities
     * Board size
-    * Place ships (location/direction)
+    * Place ships (coordinates/direction)
     * Return hit/miss ship
     * Return summary hits/misses so far
     * Return won/lost game
@@ -39,7 +39,7 @@ Class Responsibility Collaborator
 ```
 As a player
 So that I can prepare for the game
-I would like to place a ship in a board location
+I would like to place a ship in a board coordinates
 
 As a player
 So that I can play a more interesting game
