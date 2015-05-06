@@ -13,29 +13,30 @@ feature Board do
       board = Board.new
       ship = Ship.new(:destroyer)
       board.place_ship(:a3, ship, :vertical)
-      expect(board.lookup(:a3)).to eq :s
-      expect(board.lookup(:a3)).to eq :s
+      expect(board.lookup(:a3)).to eq ship
+      expect(board.lookup(:a3)).to eq ship
 
     end
 
     scenario 'disallows placing ship outside of board' do
       board = Board.new 3
-      ship = Ship.new(:destroyer)
+      ship = Ship.new :destroyer
       expect{ board.place_ship(:d4, ship, :vertical) }.to raise_error 'Outside board'
     end
 
     scenario 'disallows placing ship that extends outside of board' do
       board = Board.new 3
-      ship = Ship.new :destroyer
-      expect{ board.place_ship(:c3,ship, :destroyer) }.to raise_error 'Outside board'
+      ship = Ship.new :cruiser
+      expect{ board.place_ship(:c3,ship,:vertical) }.to raise_error 'Outside board'
       expect( board.lookup(:c3)).to be nil
     end
 
-    scenario 'disallows placing ship on top of another' do
+    xscenario 'disallows placing ship on top of another' do
       board = Board.new 3
-      ship = Ship.new(:cruiser)
-      board.place_ship(:a1,:cruiser, :vertical)
-      expect{ board.place_ship(:c1,:destroyer, :horizontal) }.to raise_error 'Overlap'
+      destroyer = Ship.new :destroyer
+      cruiser = Ship.new :cruiser
+      board.place_ship(:a1, cruiser, :vertical)
+      expect{ board.place_ship(:c1, destroyer, :horizontal) }.to raise_error 'Overlap'
       expect( board.lookup(:c2)).to be nil
     end
 

@@ -18,8 +18,6 @@ class Board
   end
 
   def place_ship(coordinates,ship,direction)
-
-    ship = Ship.new ship
     size = ship.size
     row, col = mapper coordinates
 
@@ -30,13 +28,13 @@ class Board
       if direction == :horizontal
         i = 0
         while i < size
-          @grid[row][col+i] = :s
+          @grid[row][col+i] = ship
           i += 1
         end
       else direction == :vertical
         i = 0
         while i < size
-          @grid[row+i][col] = :s
+          @grid[row+i][col] = ship
           i += 1
           end
         end
@@ -47,12 +45,17 @@ class Board
     @grid[row][col]
   end
 
+  def hit(coordinates)
+    row,col = mapper(coordinates)
+    @grid[row][col].hit
+  end
+
   def size
     @grid.count
   end
 
   def print
-    grid.each do |r|
+    @grid.each do |r|
       puts r.map { |p| p ? p : '·' }.join(" ")
     end
   end

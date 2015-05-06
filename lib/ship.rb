@@ -1,6 +1,6 @@
 class Ship
 
-  attr_reader :type, :size
+  attr_reader :type, :size, :hits
 
   TYPES = {
     aircraftcarrier: 5,
@@ -12,12 +12,13 @@ class Ship
 
   def initialize type
     @type = type
-    @size = TYPES[:destroyer]
+    @size = TYPES[type]
+    @hits = 0
+  end
+
+  def hit
+    @hits +=1
   end
 
 
 end
-
-ship = Ship.new :destroyer
-
-puts ship.inspect
