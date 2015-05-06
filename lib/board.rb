@@ -11,9 +11,9 @@ class Board
     @array = alphabet.index(row) , col.to_i-1
   end
 
-  def check_on_board (row,col)
-    size = @grid.count
-    fail 'Outside board' if (row||col) > size
+  def check_on_board (row, col)
+    size = self.size
+    fail 'Outside board' if col > size || row > size
     true
   end
 
@@ -45,9 +45,16 @@ class Board
     @grid[row][col]
   end
 
-  def hit(coordinates)
+  def fire(coordinates)
     row,col = mapper(coordinates)
-    @grid[row][col].hit
+    if @grid[row][col].nil?
+      @grid[row][col] = 'M'
+
+    else
+      @grid[row][col].hit
+      @grid[row][col] = '*'
+    end
+
   end
 
   def size
@@ -56,7 +63,22 @@ class Board
 
   def print
     @grid.each do |r|
-      puts r.map { |p| p ? p : '·' }.join(" ")
+      puts r.map { |p| p ? (p.class == Ship ? 'S' : p) : '·' }.join(" ")
     end
   end
 end
+
+board = Board.new 5
+cruiser = Ship.new :cruiser
+board.place_ship(:a1,cruiser,:horizontal)
+battleship = Ship.new :battleship
+board.place_ship(:b5,battleship,:vertical)
+board.fire :a1
+board.fire :a2
+board.fire :a3
+board.fire :b1
+board.fire :a4
+
+board.print
+puts cruiser.inspect
+puts battleship.inspect

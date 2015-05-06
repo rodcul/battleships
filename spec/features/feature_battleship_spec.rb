@@ -21,13 +21,13 @@ feature Board do
     scenario 'disallows placing ship outside of board' do
       board = Board.new 3
       ship = Ship.new :destroyer
-      expect{ board.place_ship(:d4, ship, :vertical) }.to raise_error 'Outside board'
+      expect{ board.place_ship(:d4, ship, :horizontal) }.to raise_error 'Outside board'
     end
 
     scenario 'disallows placing ship that extends outside of board' do
       board = Board.new 3
       ship = Ship.new :cruiser
-      expect{ board.place_ship(:c3,ship,:vertical) }.to raise_error 'Outside board'
+      expect{ board.place_ship(:c3,ship,:horizontal) }.to raise_error 'Outside board'
       expect( board.lookup(:c3)).to be nil
     end
 

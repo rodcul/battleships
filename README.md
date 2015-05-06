@@ -5,6 +5,32 @@ Create a battleships game in Ruby!
 
 https://github.com/makersacademy/course/blob/master/battle_ships/battle_ships.md
 
+```
+board = Board.new 5
+cruiser = Ship.new :cruiser
+board.place_ship(:a1,cruiser,:horizontal)
+battleship = Ship.new :battleship
+board.place_ship(:b5,battleship,:vertical)
+board.fire :a1
+board.fire :a2
+board.fire :a3
+board.fire :b1
+board.fire :a4
+
+board.print
+puts cruiser.inspect
+puts battleship.inspect
+
+
+* * * M ·
+M · · · S
+· · · · S
+· · · · S
+· · · · S
+
+#<Ship:0x007feb73887050 @type=:cruiser, @size=3, @hits=3, @sunk=true>
+#<Ship:0x007feb738869c0 @type=:battleship, @size=4, @hits=0, @sunk=false>```
+
 Class Responsibility Collaborator
 ---------------------------------
 

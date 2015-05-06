@@ -1,6 +1,6 @@
 class Ship
 
-  attr_reader :type, :size, :hits
+  attr_reader :type, :size, :hits, :sunk
 
   TYPES = {
     aircraftcarrier: 5,
@@ -14,10 +14,12 @@ class Ship
     @type = type
     @size = TYPES[type]
     @hits = 0
+    @sunk = false
   end
 
   def hit
-    @hits +=1
+    @hits += 1
+    @sunk = true if self.size == @hits
   end
 
 
