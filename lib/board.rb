@@ -2,6 +2,8 @@ require 'byebug'
 
 class Board
 
+  attr_reader :grid
+
   def grid_retrieve(coordinates)
     row, col = coordinates.split(//,2)
     @grid[[row,col.to_i]]
@@ -36,4 +38,15 @@ class Board
   def size
     @grid.count
   end
+
+  def grid_read
+    ('A'..'J').to_a.map do |letter|
+      @grid.select do |k, v|
+          k[0] == letter
+      end.map {|k, v|  p v}
+    end
+  end
 end
+
+board = Board.new
+board.grid_read
