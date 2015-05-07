@@ -48,9 +48,6 @@ BOARD
 * Knows location of ships
 * Can receive fire (saves hits/misses)
 
-
-
-
 ```
 As a player
 So that I can prepare for the game
