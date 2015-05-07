@@ -1,9 +1,8 @@
 require_relative 'ship'
-require 'byebug'
 
 class Board
   def initialize(size = 10)
-    @grid = Array.new(size) {|array| Array.new(size)}
+    @grid = Array.new(size) {|_array| Array.new(size)}
     @ships = []
   end
 
@@ -14,48 +13,35 @@ class Board
   end
 
   def check_board(coordinates,spaces = 1, orientation = :horizontal)
+      row,col = mapper(coordinates)
 
-    row,col = mapper(coordinates)
-    if orientation == :horizontal
-      check_col = col
-      while check_col < col + spaces
-        fail 'Outside board' if check_col >= (self.size)
-        fail 'Overlaps' if !@grid[row][check_col].nil?
-        check_col += 1
+      i = 0
+      while i <  spaces
+        x = 0
+        y = 0
+        orientation == :horizontal ? x = i : y = i
+        fail 'Outside board' if  row + y >= (self.size) || col + x  >= (self.size)
+        fail 'Overlaps' if !@grid[row + y][col + x].nil?
+        i += 1
       end
-
-    else orientation == :vertical
-      check_row = row
-      while check_row < row + spaces
-
-      fail 'Outside board' if check_row >= (self.size)
-      fail 'Overlaps' if !@grid[check_row][col].nil?
-
-      check_row += 1
-
-      end
-    end
-
   end
 
   def place_ship(coordinates,ship,orientation = :horizontal)
-
     check_board(coordinates,ship.size,orientation)
     row, col = mapper(coordinates)
-
-      if orientation == :horizontal
-        i = 0
-        while i < ship.size
-          @grid[row][col+i] = ship
-          i += 1
+    if orientation == :horizontal
+      i = 0
+      while i < ship.size
+        @grid[row][col+i] = ship
+        i += 1
+      end
+    else orientation == :vertical
+         i = 0
+         while i < ship.size
+        @grid[row+i][col] = ship
+        i +=    1
         end
-      else orientation == :vertical
-        i = 0
-        while i < ship.size
-          @grid[row+i][col] = ship
-          i += 1
-          end
-        end
+      end
     end
 
   def lookup(coordinates)
@@ -72,7 +58,6 @@ class Board
       @grid[row][col].hit
       @grid[row][col] = '*'
     end
-
   end
 
   def size

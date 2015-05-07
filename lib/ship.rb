@@ -1,7 +1,4 @@
 class Ship
-
-  @@instance_collector = []
-
   attr_reader :type, :size, :hits, :sunk
 
   TYPES = {
@@ -12,8 +9,7 @@ class Ship
     submarine: 1
   }
 
-  def initialize type
-    @@instance_collector << self
+  def initialize(type)
     @type = type
     @size = TYPES[type]
     @hits = 0
@@ -22,11 +18,6 @@ class Ship
 
   def hit
     @hits += 1
-    @sunk = true if self.size == @hits
+    @sunk = true if size == @hits
   end
-
-  def self.all_offspring
-    @@instance_collector
-  end
-
 end

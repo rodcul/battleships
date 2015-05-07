@@ -19,14 +19,13 @@ describe Ship do
 
   it 'cruiser not sunk after 2 hits' do
     ship = Ship.new(:cruiser)
-    2.times {ship.hit}
+    2.times { ship.hit }
     expect(ship.sunk).to be false
   end
 
   it 'cruiser sunk after 3 hits' do
     ship = Ship.new(:cruiser)
-    3.times {ship.hit}
+    3.times { ship.hit }
     expect(ship.sunk).to be true
   end
-
 end
