@@ -31,13 +31,22 @@ feature Board do
       expect( board.lookup(:c3)).to be nil
     end
 
-    xscenario 'disallows placing ship on top of another' do
-      board = Board.new 3
+
+
+    xscenario 'lets me know when I\'ve won' do
+      board = Board.new 5
       destroyer = Ship.new :destroyer
       cruiser = Ship.new :cruiser
       board.place_ship(:a1, cruiser, :vertical)
-      expect{ board.place_ship(:c1, destroyer, :horizontal) }.to raise_error 'Overlap'
-      expect( board.lookup(:c2)).to be nil
+      board.place_ship(:d2, destroyer, :horizontal)
+      board.fire :a1
+      board.fire :b1
+      board.fire :c1
+      board.fire :d2
+      board.fire :d3
+      byebug
+      expect(board).to be_game_over
+
     end
 
 

@@ -3,6 +3,7 @@ require_relative 'ship'
 class Board
   def initialize(size = 10)
     @grid = Array.new(size) {|array| Array.new(size)}
+    @ships = []
   end
 
   def mapper(coordinates)
@@ -18,6 +19,7 @@ class Board
   end
 
   def place_ship(coordinates,ship,direction)
+
     size = ship.size
     row, col = mapper coordinates
 
@@ -37,7 +39,10 @@ class Board
           @grid[row+i][col] = ship
           i += 1
           end
+
         end
+
+
     end
 
   def lookup(coordinates)
@@ -62,23 +67,12 @@ class Board
   end
 
   def print
-    @grid.each do |r|
-      puts r.map { |p| p ? (p.class == Ship ? 'S' : p) : '·' }.join(" ")
+    @grid.each do |row|
+      puts row.map { |cell| cell ? (cell.class == Ship ? 'S' : cell) : '·' }.join(" ")
     end
   end
+
+  def game_over?
+    Ship.all_offspring.select {|ship| ship.sunk == false}.empty?
+  end
 end
-
-board = Board.new 5
-cruiser = Ship.new :cruiser
-board.place_ship(:a1,cruiser,:horizontal)
-battleship = Ship.new :battleship
-board.place_ship(:b5,battleship,:vertical)
-board.fire :a1
-board.fire :a2
-board.fire :a3
-board.fire :b1
-board.fire :a4
-
-board.print
-puts cruiser.inspect
-puts battleship.inspect

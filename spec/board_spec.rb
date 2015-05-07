@@ -18,6 +18,7 @@ describe Board do
     expect(board.lookup(:a1)).to eq 'M'
   end
 
+
   it 'logs HIT when firing on ship' do
     board = Board.new
     ship = double :ship
@@ -28,4 +29,5 @@ describe Board do
     board.fire :a1
     expect(board.lookup(:a1)).to eq '*'
   end
+
 end
