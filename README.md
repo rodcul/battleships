@@ -36,30 +36,17 @@ M · · · S
 Class Responsibility Collaborator
 ---------------------------------
 
-* Board
-  * Responsibilities
-    * Board size
-    * Place ships (coordinates/direction)
-    * Return hit/miss ship
-    * Return summary hits/misses so far
-    * Return won/lost game
+battleships
 
-  * Collaborations
-    * Ship
+SHIP
+* Knows its size
+* Can be hit
+* Can be sunk
 
-* Ship << Destroyer
-  * Responsibilities
-    * Ship size
-
-  * Collaborations
-    * Board
-
-* Destroyer
-  * Responsibilities
-    * Ship size
-
-  * Collaborations
-   * Ship
+BOARD
+* Knows its size
+* Knows location of ships
+* Can receive fire (saves hits/misses)
 
 
 
