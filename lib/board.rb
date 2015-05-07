@@ -1,4 +1,5 @@
 require_relative 'ship'
+require 'byebug'
 
 class Board
   def initialize(size = 10)
@@ -12,37 +13,43 @@ class Board
     @array = alphabet.index(row) , col.to_i-1
   end
 
-  def check_on_board (row, col)
-    size = self.size
-    fail 'Outside board' if col > size || row > size
-    true
+  def check_board(coordinates,spaces = 1, orientation = :horizontal)
+    row,col = mapper(coordinates)
+    i = col
+
+    if orientation == :horizontal
+      while i <= col + spaces
+      fail 'Outside board' if col >= (self.size) - 1
+      i += 1
+      end
+
+    else orientation == :vertical
+      while i <= row + spaces
+      fail 'Outside board' if row >= (self.size) - 1
+      i += 1
+      end
+    end
+
   end
 
-  def place_ship(coordinates,ship,direction)
+  def place_ship(coordinates,ship,orientation = :horizontal)
 
-    size = ship.size
-    row, col = mapper coordinates
+    check_board(coordinates,ship.size,orientation)
+    row, col = mapper(coordinates)
 
-    check_on_board(row,col)
-    direction == :vertical ? check_on_board(row+size,col) : check_on_board(row,col+size)
-
-
-      if direction == :horizontal
+      if orientation == :horizontal
         i = 0
-        while i < size
+        while i < ship.size
           @grid[row][col+i] = ship
           i += 1
         end
-      else direction == :vertical
+      else orientation == :vertical
         i = 0
-        while i < size
+        while i < ship.size
           @grid[row+i][col] = ship
           i += 1
           end
-
         end
-
-
     end
 
   def lookup(coordinates)
@@ -70,9 +77,5 @@ class Board
     @grid.each do |row|
       puts row.map { |cell| cell ? (cell.class == Ship ? 'S' : cell) : '·' }.join(" ")
     end
-  end
-
-  def game_over?
-    Ship.all_offspring.select {|ship| ship.sunk == false}.empty?
   end
 end

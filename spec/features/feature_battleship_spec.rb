@@ -10,11 +10,11 @@ feature Board do
 
     scenario 'allows placing ship in a coordinates' do
 
-      board = Board.new
-      ship = Ship.new(:destroyer)
+      board = Board.new 3
+      ship = Ship.new(:cruiser)
       board.place_ship(:a3, ship, :vertical)
       expect(board.lookup(:a3)).to eq ship
-      expect(board.lookup(:a3)).to eq ship
+      expect(board.lookup(:c3)).to eq ship
 
     end
 
@@ -22,6 +22,7 @@ feature Board do
       board = Board.new 3
       ship = Ship.new :destroyer
       expect{ board.place_ship(:d4, ship, :horizontal) }.to raise_error 'Outside board'
+
     end
 
     scenario 'disallows placing ship that extends outside of board' do
@@ -29,6 +30,16 @@ feature Board do
       ship = Ship.new :cruiser
       expect{ board.place_ship(:c3,ship,:horizontal) }.to raise_error 'Outside board'
       expect( board.lookup(:c3)).to be nil
+    end
+
+    xscenario 'disallows placing overlapping ships' do
+      board = Board.new 3
+      cruiser1 = Ship.new :cruiser
+      cruiser2 = Ship.new :cruiser
+      board.place_ship(:b1,cruiser1,:horizontal)
+      expect{ board.place_ship(:a3,cruiser2,:vertical) }.to raise_error 'Overlaps'
+      expect( board.lookup(:c3)).to be nil
+
     end
 
 

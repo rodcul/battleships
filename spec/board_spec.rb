@@ -1,4 +1,5 @@
 require 'board'
+require 'byebug'
 
 describe Board do
   it 'is created with default size of 10' do
@@ -29,5 +30,29 @@ describe Board do
     board.fire :a1
     expect(board.lookup(:a1)).to eq '*'
   end
+
+  it 'checks b2 in 3x3 grid' do
+    board = Board.new 3
+    expect{ board.check_board(:b2) }.to_not raise_error
+  end
+
+  it 'checks c4 in 3x3 grid' do
+    board = Board.new 3
+    expect{ board.check_board(:c4) }.to raise_error
+  end
+
+  it 'checks multiple cells horizontal' do
+    board = Board.new 3
+    expect{ board.check_board(:c3,2) }.to raise_error 'Outside board'
+
+  end
+
+  it 'checks multiple cells vertical' do
+    board = Board.new 3
+    expect{ board.check_board(:c3,2,:vertical) }.to raise_error 'Outside board'
+
+  end
+
+
 
 end
