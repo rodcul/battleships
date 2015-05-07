@@ -38,12 +38,12 @@ describe Board do
 
   it 'checks c4 in 3x3 grid' do
     board = Board.new 3
-    expect{ board.check_board(:c4) }.to raise_error
+    expect{ board.check_board(:c4) }.to raise_error 'Outside board'
   end
 
   it 'checks multiple cells horizontal' do
     board = Board.new 3
-    expect{ board.check_board(:c3,2) }.to raise_error 'Outside board'
+    expect{ board.check_board(:a3,2) }.to raise_error 'Outside board'
 
   end
 
@@ -52,6 +52,8 @@ describe Board do
     expect{ board.check_board(:c3,2,:vertical) }.to raise_error 'Outside board'
 
   end
+
+  
 
 
 

@@ -14,19 +14,25 @@ class Board
   end
 
   def check_board(coordinates,spaces = 1, orientation = :horizontal)
-    row,col = mapper(coordinates)
-    i = col
 
+    row,col = mapper(coordinates)
     if orientation == :horizontal
-      while i <= col + spaces
-      fail 'Outside board' if col >= (self.size) - 1
-      i += 1
+      check_col = col
+      while check_col < col + spaces
+        fail 'Outside board' if check_col >= (self.size)
+        fail 'Overlaps' if !@grid[row][check_col].nil?
+        check_col += 1
       end
 
     else orientation == :vertical
-      while i <= row + spaces
-      fail 'Outside board' if row >= (self.size) - 1
-      i += 1
+      check_row = row
+      while check_row < row + spaces
+
+      fail 'Outside board' if check_row >= (self.size)
+      fail 'Overlaps' if !@grid[check_row][col].nil?
+
+      check_row += 1
+
       end
     end
 
