@@ -5,6 +5,14 @@ Create a battleships game in Ruby!
 
 https://github.com/makersacademy/course/blob/master/battle_ships/battle_ships.md
 
+Run a test game in your terminal:
+
+```
+ruby demo_game.rb
+```
+
+Sample output:
+
 ```
 board = Board.new 5
 cruiser = Ship.new :cruiser
