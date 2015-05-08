@@ -41,36 +41,21 @@ M · · · S
 ```
 
 
-Class Responsibility Collaborator
----------------------------------
+# Class Responsibility Collaborator
 
-* Board
-  * Responsibilities
-    * Board size
-    * Place ships (coordinates/direction)
-    * Return hit/miss ship
-    * Return summary hits/misses so far
-    * Return won/lost game
+### BOARD
+* Knows its size
+* Knows location of ships
+* Can receive fire (saves hits/misses)
 
-  * Collaborations
-    * Ship
-
-* Ship << Destroyer
-  * Responsibilities
-    * Ship size
-
-  * Collaborations
-    * Board
-
-* Destroyer
-  * Responsibilities
-    * Ship size
-
-  * Collaborations
-   * Ship
+### SHIP
+* Knows its size
+* Can be hit
+* Can be sunk
 
 
 
+# User stories
 
 ```
 As a player
